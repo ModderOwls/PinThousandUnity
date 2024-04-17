@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlipperController : MonoBehaviour
 {
-    public int button;
+    public bool button;
     public int dir = 1;
     
     [Space(10)]
@@ -14,7 +14,7 @@ public class FlipperController : MonoBehaviour
 
     void Update()
     {
-        flipperRot = Mathf.Lerp(flipperRot, -Mathf.Sign(button-.5f)*20, Time.deltaTime*flipperSpeed);
+        flipperRot = Mathf.Lerp(flipperRot, -Mathf.Sign(System.Convert.ToByte(button)-.5f)*20, Time.deltaTime*flipperSpeed);
         transform.localEulerAngles = new Vector3(0, 0, flipperRot * dir);
     }
 }
