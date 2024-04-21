@@ -5,13 +5,14 @@ using UnityEngine;
 public class StarterController : MonoBehaviour
 {
     public bool touchingBall;
+    public PinballController player;
 
-    void OnCollisionEnter(Collision coll)
+    void OnTriggerEnter(Collider coll)
     {
         touchingBall = true;
     }
 
-    void OnCollisionExit(Collision coll)
+    void OnTriggerExit(Collider coll)
     {
         touchingBall = false;
     }
