@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         {
             if (arduino.buttonR && arduino.buttonL)
             {
-                ball.rb.velocity += launchPos;
+                ball.rb.velocity = launchPos;
                 starter.touchingBall = false;
 
                 cam.focusPlayer = true;

@@ -12,6 +12,8 @@ public class BoosterHandler : MonoBehaviour
         {
             Rigidbody rb = coll.GetComponent<Rigidbody>();
 
+            if (rb.velocity.y < 0) return;
+
             rb.velocity = transform.up * boostPower;
         }
     }

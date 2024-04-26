@@ -1716,6 +1716,7 @@ GameObject:
   - component: {fileID: 938000365}
   - component: {fileID: 938000366}
   - component: {fileID: 938000364}
+  - component: {fileID: 938000367}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1730,11 +1731,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938000363}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52c7067df94d27541be3e899effdc9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  port: COM4
   buttonL: 0
   buttonR: 0
 --- !u!4 &938000365
@@ -1770,6 +1772,23 @@ MonoBehaviour:
   flipperR: {fileID: 1183477181}
   starter: {fileID: 855332579}
   cam: {fileID: 330585548}
+--- !u!114 &938000367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938000363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc5f48af2cffd747a079fe8c632e2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM4
+  baudRate: 9600
+  messageListener: {fileID: 938000363}
+  reconnectionDelay: 1000
+  maxUnreadMessages: 1000
 --- !u!1 &939098618
 GameObject:
   m_ObjectHideFlags: 0

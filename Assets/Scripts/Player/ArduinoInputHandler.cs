@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -5,28 +6,47 @@ using UnityEngine;
 
 public class ArduinoInputHandler : MonoBehaviour
 {
-    SerialPort stream = new SerialPort("\\.\\COM7", 9600);
+    public string port;
+    SerialPort stream;
 
     public bool buttonL;
     public bool buttonR;
 
-    void Start()
+
+    string lastStream;
+    public void OnMessageArrived(string msg)
     {
-        stream.Open();
+        if (lastStream == msg) return;
+        lastStream = msg;
+
+        int id = 0;
+        string number = "";
+        foreach(char i in msg)
+        {
+            if (i == 'a')
+            {
+                switch (id)
+                {
+                    case 0:
+                        buttonL = !Convert.ToBoolean(int.Parse(number));
+                        break;
+                    case 1:
+                        buttonR = !Convert.ToBoolean(int.Parse(number));
+                        break;
+                }
+
+                ++id;
+                number = "";
+            }
+            else
+            {
+                number += i;
+            }
+        }
     }
 
-    void Update()
+    public void OnConnectionEvent(bool success)
     {
-        string value = stream.ReadLine();
-        Debug.Log(value);
-        switch (int.Parse(value.Substring(0, 2)))
-        {
-            case 8:
-                buttonL = bool.Parse(value[2..^(-1)]);
-                break;
-            case 9:
-                buttonR = bool.Parse(value[2..^(-1)]);
-                break;
-        }
+        Debug.Log(success ? "Device connected" : "Device disconnected");
     }
 }
