@@ -20,6 +20,7 @@ public class FallHandler : MonoBehaviour
             PinballController ball = coll.GetComponent<PinballController>();
 
             ball.rb.velocity = -transform.up*20;
+            ball.lastPosition = coll.transform.position;
             ball.cam.focusPlayer = false;
         }
     }
