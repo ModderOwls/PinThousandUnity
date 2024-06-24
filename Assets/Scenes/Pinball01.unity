@@ -1740,6 +1740,7 @@ MonoBehaviour:
   port: COM4
   buttonL: 0
   buttonR: 0
+  buttonGyro: {x: 0, y: 0, z: 0}
 --- !u!4 &938000365
 Transform:
   m_ObjectHideFlags: 0
@@ -1786,10 +1787,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portName: COM4
-  baudRate: 9600
+  baudRate: 115200
   messageListener: {fileID: 938000363}
   reconnectionDelay: 1000
-  maxUnreadMessages: 1000
+  maxUnreadMessages: 1
 --- !u!1 &939098618
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,8 +3176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d0080fa02e308478ebe65d8eeedc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 0, y: 0, z: 0}
+  smooth: 3
   offset: {x: 30, y: 0, z: 0}
+  arduino: {fileID: 938000364}
 --- !u!54 &1710116814
 Rigidbody:
   m_ObjectHideFlags: 0

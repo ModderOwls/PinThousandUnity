@@ -7,10 +7,10 @@ using UnityEngine;
 public class ArduinoInputHandler : MonoBehaviour
 {
     public string port;
-    SerialPort stream;
 
     public bool buttonL;
     public bool buttonR;
+    public Vector3 buttonGyro;
 
 
     string lastStream;
@@ -19,7 +19,10 @@ public class ArduinoInputHandler : MonoBehaviour
         if (lastStream == msg) return;
         lastStream = msg;
 
+        Debug.Log(msg);
+
         int id = 0;
+        int idVector = 0;
         string number = "";
         foreach(char i in msg)
         {
@@ -36,6 +39,24 @@ public class ArduinoInputHandler : MonoBehaviour
                 }
 
                 ++id;
+                number = "";
+            }
+            else if (i == ',')
+            {
+                switch (idVector)
+                {
+                    case 0:
+                        buttonGyro[2] = float.Parse(number);
+                        break;
+                    case 1:
+                        buttonGyro[1] = float.Parse(number);
+                        break;
+                    case 2:
+                        buttonGyro[0] = float.Parse(number);
+                        break;
+                }
+
+                ++idVector;
                 number = "";
             }
             else

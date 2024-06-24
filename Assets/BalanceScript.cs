@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BalanceScript : MonoBehaviour
 {
-    public Vector3 rotation;
+    public float smooth;
     public Vector3 offset;
 
+    public ArduinoInputHandler arduino;
     Rigidbody rb;
 
     void Awake()
@@ -16,6 +17,6 @@ public class BalanceScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MoveRotation(Quaternion.Euler(rotation + offset));
+        rb.MoveRotation(Quaternion.Lerp(rb.rotation, Quaternion.Euler(arduino.buttonGyro + offset), Time.deltaTime * smooth));
     }
 }
