@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         arduino = GetComponent<ArduinoInputHandler>();
+        ball.arduino = arduino;
 
         starter.player = ball;
         ball.cam = cam;

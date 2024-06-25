@@ -12,7 +12,7 @@ public class FallHandler : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-            coll.transform.position = telePos;
+            coll.transform.position = transform.TransformPoint(telePos);
             coll.transform.eulerAngles = new Vector3(30, 0, 0);
 
             starterDoor.isTrigger = true;

@@ -12,6 +12,13 @@ public class ArduinoInputHandler : MonoBehaviour
     public bool buttonR;
     public Vector3 buttonGyro;
 
+    [HideInInspector] public SerialController serial;
+    [HideInInspector] public SerialPort serialPort;
+
+    void Awake()
+    {
+        serial = GetComponent<SerialController>();
+    }
 
     string lastStream;
     public void OnMessageArrived(string msg)
@@ -19,8 +26,7 @@ public class ArduinoInputHandler : MonoBehaviour
         if (lastStream == msg) return;
         lastStream = msg;
 
-        Debug.Log(msg);
-
+        
         int id = 0;
         int idVector = 0;
         string number = "";
@@ -69,5 +75,6 @@ public class ArduinoInputHandler : MonoBehaviour
     public void OnConnectionEvent(bool success)
     {
         Debug.Log(success ? "Device connected" : "Device disconnected");
+
     }
 }

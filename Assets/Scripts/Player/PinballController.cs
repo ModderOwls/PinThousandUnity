@@ -7,6 +7,7 @@ public class PinballController : MonoBehaviour
     [HideInInspector] public Rigidbody rb;
 
     [HideInInspector] public CameraMain cam;
+    [HideInInspector] public ArduinoInputHandler arduino;
 
     [HideInInspector] public Vector3 lastPosition;
     LayerMask layerGround;
@@ -31,5 +32,14 @@ public class PinballController : MonoBehaviour
         }
 
         lastPosition = rb.position;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bumper"))
+        {
+            arduino.serial.SendSerialMessage("1");
+            Debug.Log("Sent to arduino: Bumper");
+        }
     }
 }
