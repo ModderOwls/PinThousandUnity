@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class ArduinoInputHandler : MonoBehaviour
 {
-    public string port;
-
     public bool buttonL;
     public bool buttonR;
     public Vector3 buttonGyro;
@@ -52,13 +50,13 @@ public class ArduinoInputHandler : MonoBehaviour
                 switch (idVector)
                 {
                     case 0:
-                        buttonGyro[2] = float.Parse(number);
+                        buttonGyro[0] = float.Parse(number);
                         break;
                     case 1:
                         buttonGyro[1] = float.Parse(number);
                         break;
                     case 2:
-                        buttonGyro[0] = float.Parse(number);
+                        buttonGyro[2] = float.Parse(number);
                         break;
                 }
 
@@ -76,5 +74,12 @@ public class ArduinoInputHandler : MonoBehaviour
     {
         Debug.Log(success ? "Device connected" : "Device disconnected");
 
+    }
+
+    public void ChangePort(string newPort)
+    {
+        serial.portName = newPort;
+        serial.enabled = false;
+        serial.enabled = true;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallHandler : MonoBehaviour
 {
-    public Vector3 telePos;
+    public Transform tele;
 
     public Collider starterDoor;
 
@@ -12,8 +12,8 @@ public class FallHandler : MonoBehaviour
     {
         if (coll.CompareTag("Player"))
         {
-            coll.transform.position = transform.TransformPoint(telePos);
-            coll.transform.eulerAngles = new Vector3(30, 0, 0);
+            coll.transform.position = tele.position;
+            coll.transform.eulerAngles = new Vector3(0, 0, 0);
 
             starterDoor.isTrigger = true;
 
